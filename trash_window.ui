@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1115</width>
+    <height>891</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(101, 67, 33);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>196</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="Main_page_butt_TW">
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px;</string>
+       </property>
+       <property name="text">
+        <string>Заметки</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../Downloads/notes_24dp_FILL0_wght400_GRAD0_opsz24.svg</normaloff>../../Downloads/notes_24dp_FILL0_wght400_GRAD0_opsz24.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Archive_butt_TW">
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px</string>
+       </property>
+       <property name="text">
+        <string>Архив</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>icons/archive_FILL0_wght400_GRAD0_opsz24.svg</normaloff>icons/archive_FILL0_wght400_GRAD0_opsz24.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Remindes_butt_TW">
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px</string>
+       </property>
+       <property name="text">
+        <string>Напоминания</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>icons/notifications_FILL0_wght400_GRAD0_opsz24.svg</normaloff>icons/notifications_FILL0_wght400_GRAD0_opsz24.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Trash_butt_TW">
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px</string>
+       </property>
+       <property name="text">
+        <string>Корзина</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>icons/delete_black_24dp.svg</normaloff>icons/delete_black_24dp.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>20</y>
+      <width>581</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_ur_trash">
+       <property name="styleSheet">
+        <string notr="true">border-radius: 7px;
+font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
+       </property>
+       <property name="text">
+        <string>Ваша Корзина</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res-rc.qrc"/>
+ </resources>
+ <connections/>
+</ui>
