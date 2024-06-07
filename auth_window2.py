@@ -112,7 +112,7 @@ class Auth_Window2(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", "Добро Пожаловать", None))
         self.LogLine.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d..", None))
         self.TextLabel1.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0440\u043e \u041f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c \u0432 \u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))
         self.TextLabel2.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043e\u0439\u0434\u0438\u0442\u0435 \u0418\u043b\u0438 \u0417\u0430\u0440\u0435\u0433\u0435\u0441\u0442\u0440\u0438\u0440\u0443\u0439\u0442\u0435\u0441\u044c", None))

@@ -3,46 +3,48 @@ from full_text import Text4Note
 from PySide6.QtCore import Signal, QObject,  QTimer, QSize
 from PySide6.QtGui import QIcon
 
-class RemindManager(QObject):
-    note_unremind = Signal(str)
+class ArchiveManager(QObject):
+    note_unarchived = Signal(str)
 
-    def __init__(self, remind_window):
+    def __init__(self, archive_window):
         super().__init__()
-        self.remind_window = remind_window
+        self.archive_window = archive_window
         self.current_x = 250
         self.current_y = 20
         self.notes = []
 
-    def add_note_to_remind(self, note_text):
+    def add_note_to_archive(self, note_text):
         if not note_text.strip():
             return
+
         self.notes.append(note_text)  # Add note with archived status True
 
     def restore_notes(self):
         self.current_x, self.current_y = 250, 20
         self.reposition_notes()
 
+
     def reposition_notes(self):
-        for widget in self.remind_window.findChildren(QtWidgets.QFrame):
+        for widget in self.archive_window.findChildren(QtWidgets.QFrame):
             widget.deleteLater()
 
         self.current_x, self.current_y = 250, 20
         for note_text in self.notes:
-            self.display_note_in_remind(note_text)
+            self.display_note_in_archive(note_text)
 
-    def display_note_in_remind(self, note_text):
+    def display_note_in_archive(self, note_text):
         max_length = 298
         display_text = note_text if len(note_text) <= max_length else note_text[:max_length - 1] + '...'
 
-        remind_note = QtWidgets.QFrame(self.remind_window)
-        remind_note.setStyleSheet(
+        archive_note = QtWidgets.QFrame(self.archive_window)
+        archive_note.setStyleSheet(
             "border: 1px solid rgb(0,0,0);"
             "background-color: rgb(255, 239, 205);"
         )
-        remind_note.setGeometry(self.current_x, self.current_y, 250, 170)
-        remind_note.show()
+        archive_note.setGeometry(self.current_x, self.current_y, 250, 170)
+        archive_note.show()
 
-        label = QtWidgets.QLabel(remind_note)
+        label = QtWidgets.QLabel(archive_note)
         label.setText(display_text)
         label.setWordWrap(True)
         label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
@@ -50,8 +52,12 @@ class RemindManager(QObject):
         label.show()
 
         # Create buttons
-        remind_button = QtWidgets.QPushButton(remind_note)
-        show_text_button = QtWidgets.QPushButton("...", remind_note)
+        archive_button = QtWidgets.QPushButton(archive_note)
+        show_text_button = QtWidgets.QPushButton("...", archive_note)
+        icon = QIcon()
+        icon.addFile(u"../../Downloads/unarchive_24dp_FILL0_wght400_GRAD0_opsz24 (2).svg", QSize(), QIcon.Normal, QIcon.Off)
+        archive_button.setIcon(icon)
+        archive_button.setIconSize(QSize(24, 24))
 
         # Style and position buttons
         button_style = """
@@ -61,51 +67,45 @@ class RemindManager(QObject):
                            border-radius: 5px;
                        }
                        """
-        icon = QIcon()
-        icon.addFile(u"icons/close_24dp_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
-        remind_button.setIcon(icon)
-        remind_button.setIconSize(QSize(24, 24))
-
-
-        remind_button.setStyleSheet(button_style)
+        archive_button.setStyleSheet(button_style)
         show_text_button.setStyleSheet(button_style)
 
-        remind_button.setGeometry(127, 135, 55, 30)
+        archive_button.setGeometry(127, 135, 55, 30)
         show_text_button.setGeometry(187, 135, 55, 30)
 
         # Initially hide buttons
-        remind_button.hide()
+        archive_button.hide()
         show_text_button.hide()
 
         # Assign event handlers
-        remind_note.enterEvent = self.create_enter_event_handler(remind_button, show_text_button)
-        remind_note.leaveEvent = self.create_leave_event_handler(remind_button, show_text_button)
+        archive_note.enterEvent = self.create_enter_event_handler(archive_button, show_text_button)
+        archive_note.leaveEvent = self.create_leave_event_handler(archive_button, show_text_button)
 
-        remind_button.clicked.connect(self.create_unremind_event_handler(remind_note, note_text))
+        archive_button.clicked.connect(self.create_unarchive_event_handler(archive_note, note_text))
         show_text_button.clicked.connect(self.create_show_text_event_handler(note_text))
 
         self.current_x += 285
         if self.current_x >= 1105:
             self.current_x = 250
             self.current_y += 185
-    def create_unremind_event_handler(self, note, full_note_text):
-        def unremind_note():
+
+    def create_unarchive_event_handler(self, note, full_note_text):
+        def unarchived_note():
             try:
                 self.notes.remove(full_note_text)
             except ValueError:
                 return
-            self.note_unremind.emit(full_note_text)
+            self.note_unarchived.emit(full_note_text)
             note.deleteLater()
             QTimer.singleShot(250, self.reposition_notes)
 
-        return unremind_note
+        return unarchived_note
 
     def create_enter_event_handler(self, *buttons):
         def enter_event_handler(event):
             self.show_buttons(*buttons)
 
         return enter_event_handler
-
 
     def create_leave_event_handler(self, *buttons):
         def leave_event_handler(event):
@@ -146,4 +146,3 @@ class RemindManager(QObject):
         label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
         label.setGeometry(0, 0, 1000, 1000)
         label.show()
-

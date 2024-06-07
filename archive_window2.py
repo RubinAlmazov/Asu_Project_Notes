@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'archive_window.ui'
-##
-## Created by: Qt User Interface Compiler version 6.7.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -143,7 +134,7 @@ class Ui_ArchiveWindow(object):
     # setupUi
 
     def retranslateUi(self, ArchiveWindow):
-        ArchiveWindow.setWindowTitle(QCoreApplication.translate("ArchiveWindow", u"MainWindow", None))
+        ArchiveWindow.setWindowTitle(QCoreApplication.translate("ArchiveWindow", "Aрхивированные заметки", None))
         self.MainWindowButtAW.setText(QCoreApplication.translate("ArchiveWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))
         self.ArchiveButtAW.setText(QCoreApplication.translate("ArchiveWindow", u"\u0410\u0440\u0445\u0438\u0432", None))
         self.RemindButtAW.setText(QCoreApplication.translate("ArchiveWindow", u"\u041d\u0430\u043f\u043e\u043c\u0438\u043d\u0430\u043d\u0438\u044f", None))
