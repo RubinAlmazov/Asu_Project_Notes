@@ -60,9 +60,10 @@ class Ui_MainWindow(object):
             "}"
         )
         icon = QIcon()
-        icon.addFile(u":/icon/icons/home_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../Downloads/notes_24dp_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.MainWindowButtMW.setIcon(icon)
         self.MainWindowButtMW.setIconSize(QSize(24, 24))
+        self.MainWindowButtMW.setText('Заметки')
 
         self.verticalLayout.addWidget(self.MainWindowButtMW)
 
@@ -157,7 +158,7 @@ class Ui_MainWindow(object):
         self.action_2.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))
         self.action_3.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u043f\u043e\u043c\u0438\u043d\u0430\u043d\u0438\u044f", None))
         self.action_4.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u0440\u0437\u0438\u043d\u0430", None))
-        self.MainWindowButtMW.setText(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430", None))
+
         self.ArchiveButtMW_2.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0440\u0445\u0438\u0432", None))
         self.RemindButtMW_2.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u043f\u043e\u043c\u0438\u043d\u0430\u043d\u0438\u044f", None))
         self.TrashButtMW.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u0440\u0437\u0438\u043d\u0430", None))
