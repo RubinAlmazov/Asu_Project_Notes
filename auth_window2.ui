@@ -39,108 +39,6 @@
      <string>Логин..</string>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>30</y>
-      <width>538</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <property name="spacing">
-      <number>20</number>
-     </property>
-     <item>
-      <widget class="QLabel" name="TextLabel1">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>20</pointsize>
-         <italic>false</italic>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LayoutDirection::LeftToRight</enum>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-radius: 7px;
-font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
-       </property>
-       <property name="text">
-        <string>Добро Пожаловать в Заметки</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="TextLabel2">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>20</pointsize>
-         <italic>false</italic>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LayoutDirection::LeftToRight</enum>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-radius: 7px;
-font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
-       </property>
-       <property name="text">
-        <string>Войдите Или Зарегестрируйтесь</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="TextLabel3">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>20</pointsize>
-         <italic>false</italic>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LayoutDirection::LeftToRight</enum>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-radius: 7px;
-font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
-       </property>
-       <property name="text">
-        <string>Чтобы Продолжить Работу Над Заметками</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="LoginButt">
     <property name="geometry">
      <rect>
@@ -221,6 +119,111 @@ font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TextLabel1">
+    <property name="geometry">
+     <rect>
+      <x>281</x>
+      <y>31</y>
+      <width>536</width>
+      <height>53</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 7px;
+font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
+    </property>
+    <property name="text">
+     <string>Добро Пожаловать в Заметки</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TextLabel2">
+    <property name="geometry">
+     <rect>
+      <x>281</x>
+      <y>104</y>
+      <width>536</width>
+      <height>53</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 7px;
+font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
+    </property>
+    <property name="text">
+     <string>Войдите Или Зарегестрируйтесь</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TextLabel3">
+    <property name="geometry">
+     <rect>
+      <x>281</x>
+      <y>177</y>
+      <width>536</width>
+      <height>53</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 7px;
+font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
+    </property>
+    <property name="text">
+     <string>Чтобы Продолжить Работу Над Заметками</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>

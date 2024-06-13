@@ -6,8 +6,10 @@ from PySide6.QtGui import QIcon
 class ArchiveManager(QObject):
     note_unarchived = Signal(str)
 
-    def __init__(self, archive_window):
+    def __init__(self, archive_window, parent=None):
         super().__init__()
+        self.parent = parent
+        self.user_login = parent.user_login if parent else None
         self.archive_window = archive_window
         self.current_x = 250
         self.current_y = 20
@@ -38,8 +40,17 @@ class ArchiveManager(QObject):
 
         archive_note = QtWidgets.QFrame(self.archive_window)
         archive_note.setStyleSheet(
-            "border: 1px solid rgb(0,0,0);"
-            "background-color: rgb(255, 239, 205);"
+            """
+                QFrame {
+                    background-color: rgba(255, 239, 205, 204); 
+                    border: 1px solid rgb(150, 150, 150);
+                    border-radius: 5px;
+                }
+                QFrame:focus {
+                    background-color: rgba(235, 235, 235, 204);  
+                    border: 1px solid rgb(90, 90, 90);
+                }
+                """
         )
         archive_note.setGeometry(self.current_x, self.current_y, 250, 170)
         archive_note.show()
@@ -55,7 +66,7 @@ class ArchiveManager(QObject):
         archive_button = QtWidgets.QPushButton(archive_note)
         show_text_button = QtWidgets.QPushButton("...", archive_note)
         icon = QIcon()
-        icon.addFile(u"../../Downloads/unarchive_24dp_FILL0_wght400_GRAD0_opsz24 (2).svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"icons/close_24dp_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
         archive_button.setIcon(icon)
         archive_button.setIconSize(QSize(24, 24))
 
@@ -146,3 +157,4 @@ class ArchiveManager(QObject):
         label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
         label.setGeometry(0, 0, 1000, 1000)
         label.show()
+

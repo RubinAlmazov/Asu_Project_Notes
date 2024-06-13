@@ -1,10 +1,7 @@
-#TODO: CHANGE THE STYLE AND ANIMATION OF THE BUTTONS / ADD THE TEXT IF AUTH IS SUCCSESSFUL "WELCOME {user_name}" /
-# PROBABLY CHANGE THE BD AND ADD THE COLUMN WITH THE TEXT OF NOTE
-
 import sqlite3
 from PySide6 import QtWidgets, QtCore
-
-from auth_window2 import Auth_Window2
+from PySide6.QtCore import QTimer
+from auth_window3 import Auth_Window2
 
 db = sqlite3.connect('database_notes2')
 cursor = db.cursor()
@@ -13,14 +10,17 @@ db.commit()
 
 
 class AuthWindow(QtWidgets.QMainWindow, Auth_Window2):
-    # Создание пользовательского сигнала
-    authenticated = QtCore.Signal()
+    authenticated = QtCore.Signal(str)  # Signal to emit user_login
+
 
     def __init__(self):
         super(AuthWindow, self).__init__()
         self.setupUi(self)
         self.LoginButt.pressed.connect(self.login)
         self.RegButt.pressed.connect(self.register)
+
+    def login_user(self, user_login):
+        self.authenticated.emit(user_login)
 
     def register(self):
         user_login = self.LogLine.text()
@@ -31,13 +31,12 @@ class AuthWindow(QtWidgets.QMainWindow, Auth_Window2):
             self.label.show()
             return
 
-        cursor.execute(f'SELECT login FROM users WHERE login="{user_login}"')
+        cursor.execute('SELECT login FROM users WHERE login = ?', (user_login,))
         if cursor.fetchone() is None:
-            cursor.execute(f'INSERT INTO users (login, password) VALUES ("{user_login}", "{user_password}")')
+            cursor.execute('INSERT INTO users (login, password) VALUES (?, ?)', (user_login, user_password))
             self.label.setText(f'Аккаунт {user_login} успешно зарегистрирован')
             self.label.show()
-            self.authenticated.emit()
-            self.close()
+            QTimer.singleShot(500, self.emit_and_close)
             db.commit()
         else:
             self.label.setText('Такая запись уже имеется')
@@ -52,17 +51,18 @@ class AuthWindow(QtWidgets.QMainWindow, Auth_Window2):
             self.label.show()
             return
 
-        cursor.execute(f'SELECT password FROM users WHERE login="{user_login}"')
-        check_pass = cursor.fetchall()
+        cursor.execute('SELECT password FROM users WHERE login = ?', (user_login,))
+        check_pass = cursor.fetchone()
 
-        cursor.execute(f'SELECT login FROM users WHERE login="{user_login}"')
-        check_login = cursor.fetchall()
-
-        if check_pass and check_pass[0][0] == user_password and check_login and check_login[0][0] == user_login:
+        if check_pass and check_pass[0] == user_password:
             self.label.setText('Успешная авторизация')
             self.label.show()
-            self.authenticated.emit()
-            self.close()
+            QTimer.singleShot(500, self.emit_and_close)
         else:
             self.label.setText('Ошибка авторизации')
             self.label.show()
+
+    def emit_and_close(self):
+        user_login = self.LogLine.text()
+        self.authenticated.emit(user_login)
+        self.hide()

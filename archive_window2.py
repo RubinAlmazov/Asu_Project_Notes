@@ -19,6 +19,15 @@ class Ui_ArchiveWindow(object):
         self.centralwidget = QWidget(ArchiveWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.layoutWidget = QWidget(self.centralwidget)
+        ArchiveWindow.setStyleSheet("""
+                    QWidget {
+                        background: QLinearGradient(x1: 0, y1: 0,
+                                                    x2: 0, y2: 1,
+                                                    stop: 0   rgba(69, 43, 26, 255), /* более темный коричневый */
+                                                    stop: 0.5 rgba(102, 68, 34, 255), /* средний коричневый */
+                                                    stop: 1   rgba(122, 101, 82, 255)); /* светлый коричневый */
+                    }
+                """)
         self.layoutWidget.setObjectName(u"layoutWidget")
         self.layoutWidget.setGeometry(QRect(0, 0, 196, 281))
         self.verticalLayout = QVBoxLayout(self.layoutWidget)

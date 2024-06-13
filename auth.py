@@ -24,6 +24,15 @@ class Ui_LogReg(object):
             LogReg.setObjectName(u"LogReg")
         LogReg.resize(449, 194)
         LogReg.setStyleSheet(u"background-color: rgb(101, 67, 33);")
+        LogReg.setStyleSheet("""
+                    QWidget {
+                        background: QLinearGradient(x1: 0, y1: 0,
+                                                    x2: 0, y2: 1,
+                                                    stop: 0   rgba(69, 43, 26, 255), /* более темный коричневый */
+                                                    stop: 0.5 rgba(102, 68, 34, 255), /* средний коричневый */
+                                                    stop: 1   rgba(122, 101, 82, 255)); /* светлый коричневый */
+                    }
+                """)
         self.verticalLayout_2 = QVBoxLayout(LogReg)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout = QVBoxLayout()

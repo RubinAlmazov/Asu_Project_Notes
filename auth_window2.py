@@ -17,6 +17,15 @@ class Auth_Window2(object):
         MainWindow.resize(1095, 863)
         MainWindow.setStyleSheet(u"background-color: rgb(101, 67, 33);")
         self.centralwidget = QWidget(MainWindow)
+        MainWindow.setStyleSheet("""
+                            QWidget {
+                                background: QLinearGradient(x1: 0, y1: 0,
+                                                            x2: 0, y2: 1,
+                                                            stop: 0   rgba(69, 43, 26, 255), /* более темный коричневый */
+                                                            stop: 0.5 rgba(102, 68, 34, 255), /* средний коричневый */
+                                                            stop: 1   rgba(122, 101, 82, 255)); /* светлый коричневый */
+                            }
+                        """)
         self.centralwidget.setObjectName(u"centralwidget")
         self.LogLine = QLineEdit(self.centralwidget)
         self.LogLine.setObjectName(u"LogLine")

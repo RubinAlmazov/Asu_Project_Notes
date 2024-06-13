@@ -17,139 +17,155 @@
    <string notr="true">background-color: rgb(101, 67, 33);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QPushButton" name="TrashButtMW_2">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>196</width>
-      <height>281</height>
+      <y>250</y>
+      <width>194</width>
+      <height>52</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="MainWindowButtAW">
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="acceptDrops">
-        <bool>true</bool>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LayoutDirection::LeftToRight</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
-font: 15pt &quot;Arial&quot;;height: 50px;</string>
-       </property>
-       <property name="text">
-        <string>Заметки</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../Downloads/notes_24dp_FILL0_wght400_GRAD0_opsz24.svg</normaloff>../../Downloads/notes_24dp_FILL0_wght400_GRAD0_opsz24.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="ArchiveButtAW">
-       <property name="styleSheet">
-        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
 font: 15pt &quot;Arial&quot;;height: 50px</string>
-       </property>
-       <property name="text">
-        <string>Архив</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>icons/archive_FILL0_wght400_GRAD0_opsz24.svg</normaloff>icons/archive_FILL0_wght400_GRAD0_opsz24.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="RemindButtAW">
-       <property name="styleSheet">
-        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
-font: 15pt &quot;Arial&quot;;height: 50px</string>
-       </property>
-       <property name="text">
-        <string>Напоминания</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>icons/notifications_FILL0_wght400_GRAD0_opsz24.svg</normaloff>icons/notifications_FILL0_wght400_GRAD0_opsz24.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="TrashButtAW">
-       <property name="styleSheet">
-        <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
-font: 15pt &quot;Arial&quot;;height: 50px</string>
-       </property>
-       <property name="text">
-        <string>Корзина</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>icons/delete_black_24dp.svg</normaloff>icons/delete_black_24dp.svg</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="autoRepeat">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    </property>
+    <property name="text">
+     <string>csv файл</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Downloads/ios_share_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg</normaloff>../../Downloads/ios_share_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QPushButton" name="ArchiveButtMW_2">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>20</y>
-      <width>581</width>
-      <height>41</height>
+      <x>0</x>
+      <y>70</y>
+      <width>194</width>
+      <height>52</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="styleSheet">
-        <string notr="true">border-radius: 7px;
-font: 20pt &quot;Arial&quot;; justify: left; color: rgb(237,145,33)</string>
-       </property>
-       <property name="text">
-        <string>Ваши Архивированные Заметки</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px</string>
+    </property>
+    <property name="text">
+     <string>Архив</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/archive_FILL0_wght400_GRAD0_opsz24.svg</normaloff>icons/archive_FILL0_wght400_GRAD0_opsz24.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="MainWindowButtMW">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>194</width>
+      <height>52</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px;</string>
+    </property>
+    <property name="text">
+     <string>Заметки</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Downloads/notes_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg</normaloff>../../Downloads/notes_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RemindButtMW_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>130</y>
+      <width>194</width>
+      <height>52</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px</string>
+    </property>
+    <property name="text">
+     <string>Напоминания</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/notifications_FILL0_wght400_GRAD0_opsz24.svg</normaloff>icons/notifications_FILL0_wght400_GRAD0_opsz24.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="TrashButtMW">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>190</y>
+      <width>194</width>
+      <height>52</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid rgb(0,0,0);background-color: rgb(255, 239, 205);border-radius: 7px;
+font: 15pt &quot;Arial&quot;;height: 50px</string>
+    </property>
+    <property name="text">
+     <string>Корзина</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/delete_black_24dp.svg</normaloff>icons/delete_black_24dp.svg</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
    </widget>
   </widget>
  </widget>
