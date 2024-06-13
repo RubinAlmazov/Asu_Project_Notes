@@ -12,7 +12,6 @@ db.commit()
 class AuthWindow(QtWidgets.QMainWindow, Auth_Window2):
     authenticated = QtCore.Signal(str)  # Signal to emit user_login
 
-
     def __init__(self):
         super(AuthWindow, self).__init__()
         self.setupUi(self)

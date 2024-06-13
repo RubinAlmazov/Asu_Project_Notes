@@ -1,6 +1,6 @@
 from PySide6.QtCore import (QCoreApplication,
-                            QMetaObject, QRect, Qt)
-from PySide6.QtGui import QFont
+                            QMetaObject, QRect, Qt, QSize)
+from PySide6.QtGui import QFont,QIcon
 from PySide6.QtWidgets import (QLabel, QLineEdit,
                                QPushButton, QWidget)
 
@@ -9,7 +9,9 @@ class Auth_Window2(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1095, 863)
+        window_icon = QIcon(u"icons/spec.svg")
+        MainWindow.setWindowIcon(window_icon)
+        MainWindow.setFixedSize(1095, 863)
         MainWindow.setStyleSheet(u"background-color: rgb(101, 67, 33);")
         MainWindow.setStyleSheet("""
                                     QWidget {
@@ -96,6 +98,15 @@ class Auth_Window2(object):
         self.RegButt.setGeometry(QRect(550, 415, 241, 51))
         self.RegButt.setFont(font)
         self.RegButt.setStyleSheet(button_style)
+        icon1 = QIcon()
+        icon1.addFile(u"icons/how_to_reg_24dp_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.RegButt.setIcon(icon1)
+        self.RegButt.setIconSize(QSize(24, 24))
+        icon = QIcon()
+        icon.addFile(u"icons/login_24dp_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.LoginButt.setIcon(icon)
+        self.LoginButt.setIconSize(QSize(24, 24))
+
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(390, 490, 311, 20))

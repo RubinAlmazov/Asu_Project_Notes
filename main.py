@@ -13,14 +13,14 @@ from PySide6.QtCore import QTimer, QSize
 from PySide6.QtGui import QIcon
 from notes_manager import *
 import pandas as pd
-
+import sqlite3
+import datetime
 
 class NotesTracker(QtWidgets.QMainWindow):
     def __init__(self, user_login):
         super(NotesTracker, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
         self.ui.ArchiveButtMW_2.clicked.connect(self.open_archive_window)
         self.ui.RemindButtMW_2.clicked.connect(self.open_remind_window)
         self.ui.TrashButtMW.clicked.connect(self.open_trash_window)
@@ -30,10 +30,12 @@ class NotesTracker(QtWidgets.QMainWindow):
         self.current_y = 120
 
         self.notes = []  # Store (note_text, note) tuples
+        self.displayed_note_ids = []  # Store IDs of displayed notes
 
         self.ui.NotesLineMW.returnPressed.connect(self.add_note)
 
         # initialize instance attributes
+        self.current_window = None
         self.window3 = None
         self.window4 = None
         self.window5 = None
@@ -59,20 +61,23 @@ class NotesTracker(QtWidgets.QMainWindow):
 
     def load_notes_from_db(self):
         notes = get_notes_from_db(self.user_login)
-        for note_text, pos_x, pos_y in notes:
-            self.add_note_with_text(note_text, pos_x, pos_y)
+        for note_text, pos_x, pos_y, note_id in notes:
+            self.add_note_with_text(note_text, pos_x, pos_y, note_id)
 
     def add_note_from_remove(self, note_text):
         self.add_note_with_text(note_text)
 
-    def add_note_with_text(self, note_text, x=None, y=None):
+    def add_note_with_text(self, note_text, x=None, y=None, note_id=None, window=None):
+        if window is None:
+            window = self.current_window
+
         if note_text in [note[0] for note in self.notes]:
             return
         if x is None or y is None:
             x, y = self.get_next_position()
 
         note_text_short = note_text
-        if len(note_text) > 297:
+        if len(note_text) > 310:
             note_text_short = note_text[:296] + '...'
 
         x, y = self.current_x, self.current_y
@@ -98,7 +103,16 @@ class NotesTracker(QtWidgets.QMainWindow):
         label.setText(note_text_short)
         label.setWordWrap(True)
         label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
-        label.setGeometry(0, 0, 250, 170)
+        label.setGeometry(10, 10, 230, 150)
+        label.setStyleSheet(
+            """
+            QLabel {
+                padding: 5px;  
+                font-size: 12px;
+                color: #333;
+            }
+            """
+        )
         label.show()
 
         # Create and position buttons
@@ -156,9 +170,16 @@ class NotesTracker(QtWidgets.QMainWindow):
         show_text_button.clicked.connect(self.create_show_text_event_handler(note_text))
 
         self.notes.append((note_text, note))
-        add_note_to_db(self.user_login, note_text, x, y)
+        if note_id is None:
+            add_note_to_db(self.user_login, note_text, x, y)
+            conn = sqlite3.connect('notestest2.db')
+            cur = conn.cursor()
+            cur.execute("SELECT ID FROM notes WHERE user_login = ? AND note_text = ? AND pos_x = ? AND pos_y = ?",
+                        (self.user_login, note_text, x, y))
+            note_id = cur.fetchone()[0]
+            conn.close()
+        self.displayed_note_ids.append(note_id)
         self.reposition_notes()
-
     # moves notes to fill in the gaps after deletion.
 
     def get_next_position(self):
@@ -180,10 +201,19 @@ class NotesTracker(QtWidgets.QMainWindow):
                 y += 185
 
     def export_data(self):
-        conn = sqlite3.connect('notestest.db')
-        df = pd.read_sql('SELECT ID,user_login, note_text from notes WHERE user_login=?', conn)
-        df.to_csv(f'{self.user_login}.csv', index=False)
-        print(f"Data successfully exported to {self.user_login}.csv")
+        if not self.displayed_note_ids:
+            return
+
+
+        current_time = datetime.datetime.now().strftime("%H-%M")
+        export_file = f'{self.user_login}_{current_time}_.csv'
+
+        conn = sqlite3.connect('notestest2.db')
+        placeholder = ', '.join(['?'] * len(self.displayed_note_ids))
+        query = f'SELECT ID, user_login, note_text FROM notes WHERE ID IN ({placeholder})'
+        df = pd.read_sql(query, conn, params=self.displayed_note_ids)
+        df.to_csv(export_file, index=False)
+        print(f"Данные успешно преобразованы в файл {export_file}")
         conn.close()
 
     def create_archive_event_handler(self, note, note_text):
@@ -196,6 +226,7 @@ class NotesTracker(QtWidgets.QMainWindow):
         return archive_event_handler
 
     def open_archive_window(self):
+        self.current_window = self.window3
         self.window3 = QtWidgets.QMainWindow()
         ui3 = Ui_ArchiveWindow()
         ui3.setupUi(self.window3)
@@ -222,6 +253,7 @@ class NotesTracker(QtWidgets.QMainWindow):
         self.show()
 
     def open_remind_window(self):
+        self.current_window = self.window4
         self.window4 = QtWidgets.QMainWindow()
         ui4 = RemindWindow()
         ui4.setupUi(self.window4)
@@ -248,6 +280,7 @@ class NotesTracker(QtWidgets.QMainWindow):
         self.show()
 
     def open_trash_window(self):
+        self.current_window = self.window5
         self.window5 = QtWidgets.QMainWindow()
         ui5 = Ui_TrashWindow()
         ui5.setupUi(self.window5)
@@ -326,20 +359,45 @@ class NotesTracker(QtWidgets.QMainWindow):
         window7 = QtWidgets.QMainWindow()
         ui7 = Text4Note()
         ui7.setupUi(window7)
-        ui7.label.setText(full_note_text)
-        window7.show()
 
-        frame = QtWidgets.QFrame(window7)
-        frame.setStyleSheet("background-color: rgb(255, 239, 205);")
-        frame.setGeometry(0, 0, 1000, 1000)
-        frame.show()
+        # Create a scroll area
+        scroll_area = QtWidgets.QScrollArea(window7)
+        scroll_area.setWidgetResizable(True)
 
+        # Create a frame to hold the text
+        frame = QtWidgets.QFrame()
+        frame.setStyleSheet(
+            """
+            QFrame {
+                background-color: rgba(255, 239, 205, 204); 
+                border: 1px solid rgb(150, 150, 150);
+                border-radius: 5px;
+            }
+            QFrame:focus {
+                background-color: rgba(235, 235, 235, 204);  
+                border: 1px solid rgb(90, 90, 90);
+            }
+            """
+        )
+
+        # Create a layout for the frame
+        layout = QtWidgets.QVBoxLayout(frame)
+        frame.setLayout(layout)
+
+        # Create a label to display the text
         label = QtWidgets.QLabel(frame)
         label.setText(full_note_text)
         label.setWordWrap(True)
         label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
-        label.setGeometry(0, 0, 1000, 1000)
-        label.show()
+        layout.addWidget(label)
+
+        # Set the frame as the widget for the scroll area
+        scroll_area.setWidget(frame)
+
+        # Set the scroll area as the central widget of the window
+        window7.setCentralWidget(scroll_area)
+
+        window7.show()
 
 
 # Главная логика приложения

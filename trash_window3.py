@@ -15,8 +15,9 @@ class Ui_TrashWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1115, 891)
-        MainWindow.setWindowIcon(QIcon())
+        MainWindow.setFixedSize(1095, 863)
+        window_icon = QIcon(u"icons/spec.svg")
+        MainWindow.setWindowIcon(window_icon)
         MainWindow.setStyleSheet(u"background-color: rgb(101, 67, 33);")
         MainWindow.setStyleSheet("""
                                     QWidget {
@@ -100,7 +101,6 @@ class Ui_TrashWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", "Корзина", None))
-        MainWindow.setWindowIcon(QIcon())
         self.TrashButtMW.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u0440\u0437\u0438\u043d\u0430", None))
         self.RemindButtMW_2.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u043f\u043e\u043c\u0438\u043d\u0430\u043d\u0438\u044f", None))
         self.MainWindowButtMW.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043c\u0435\u0442\u043a\u0438", None))

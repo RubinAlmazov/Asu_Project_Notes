@@ -16,10 +16,12 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1095, 863)
+        MainWindow.setFixedSize(1095, 863)
         MainWindow.setAcceptDrops(False)
         MainWindow.setStyleSheet(u"background-color: rgb(101, 67, 33);\n"
 "")
+        window_icon = QIcon(u"icons/spec.svg")
+        MainWindow.setWindowIcon(window_icon)
         self.action_2 = QAction(MainWindow)
         button_style = """
                        QPushButton {

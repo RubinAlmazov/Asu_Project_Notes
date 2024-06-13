@@ -8,7 +8,6 @@ class Text4Note(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(1000, 800)
-
         # Создаем QScrollArea и устанавливаем его как центральный виджет
         self.scrollArea = QScrollArea(Dialog)
         self.scrollArea.setGeometry(QRect(0, 0, 431, 329))
@@ -38,7 +37,7 @@ class Text4Note(object):
     # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", 'Просмотр', None))
         self.label.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
     # retranslateUi
 

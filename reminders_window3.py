@@ -23,7 +23,9 @@ class RemindWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1114, 883)
+        window_icon = QIcon(u"icons/spec.svg")
+        MainWindow.setWindowIcon(window_icon)
+        MainWindow.setFixedSize(1095, 863)
         MainWindow.setStyleSheet(u"background-color: rgb(101, 67, 33);")
         MainWindow.setStyleSheet("""
                             QWidget {

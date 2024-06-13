@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'archive_window.ui'
-##
-## Created by: Qt User Interface Compiler version 6.7.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -23,10 +14,12 @@ class Ui_ArchiveWindow(object):
     def setupUi(self, ArchiveWindow):
         if not ArchiveWindow.objectName():
             ArchiveWindow.setObjectName(u"ArchiveWindow")
-        ArchiveWindow.resize(1111, 884)
+        ArchiveWindow.setFixedSize(1095, 863)
         ArchiveWindow.setStyleSheet(u"background-color: rgb(101, 67, 33);")
         self.centralwidget = QWidget(ArchiveWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        window_icon = QIcon(u"icons/spec.svg")
+        ArchiveWindow.setWindowIcon(window_icon)
 
         ArchiveWindow.setStyleSheet("""
                     QWidget {

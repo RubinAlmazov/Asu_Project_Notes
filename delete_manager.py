@@ -2,7 +2,7 @@ from PySide6 import QtCore, QtWidgets
 from full_text import Text4Note
 from PySide6.QtCore import Signal, QObject,  QTimer, QSize
 from PySide6.QtGui import QIcon
-from notes_manager import delete_note_from_db
+from notes_manager import update_note_state
 
 class DeleteManager(QObject):
     note_undelete = Signal(str)
@@ -38,7 +38,7 @@ class DeleteManager(QObject):
             self.display_note_in_delete(note_text)
 
     def display_note_in_delete(self, note_text):
-        max_length = 298
+        max_length = 310
         display_text = note_text if len(note_text) <= max_length else note_text[:max_length - 1] + '...'
 
         delete_note = QtWidgets.QFrame(self.delete_window)
@@ -62,7 +62,16 @@ class DeleteManager(QObject):
         label.setText(display_text)
         label.setWordWrap(True)
         label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
-        label.setGeometry(0, 0, 250, 170)
+        label.setGeometry(10, 10, 230, 150)
+        label.setStyleSheet(
+            """
+            QLabel {
+                padding: 5px;  
+                font-size: 12px;
+                color: #333;
+            }
+            """
+        )
         label.show()
 
         # Create buttons
@@ -118,7 +127,7 @@ class DeleteManager(QObject):
         def delete_from_db():
             dialog = ConfirmDelete(self.delete_window)
             if dialog.exec() == QtWidgets.QDialog.Accepted:
-                delete_note_from_db(self.user_login, note_text)
+                update_note_state(self.user_login, note_text, 'deleted')  # Помечаем как удаленную
                 self.notes.remove(note_text)
                 note.deleteLater()
                 QTimer.singleShot(250, self.reposition_notes)
@@ -171,19 +180,44 @@ class DeleteManager(QObject):
         ui7 = Text4Note()
         ui7.setupUi(window7)
         ui7.label.setText(full_note_text)
-        window7.show()
 
-        frame = QtWidgets.QFrame(window7)
-        frame.setStyleSheet("background-color: rgb(255, 239, 205);")
-        frame.setGeometry(0, 0, 1000, 1000)
-        frame.show()
+        scroll_area = QtWidgets.QScrollArea(window7)
+        scroll_area.setWidgetResizable(True)
 
+        # Create a frame to hold the text
+        frame = QtWidgets.QFrame()
+        frame.setStyleSheet(
+            """
+            QFrame {
+                background-color: rgba(255, 239, 205, 204); 
+                border: 1px solid rgb(150, 150, 150);
+                border-radius: 5px;
+            }
+            QFrame:focus {
+                background-color: rgba(235, 235, 235, 204);  
+                border: 1px solid rgb(90, 90, 90);
+            }
+            """
+        )
+
+        # Create a layout for the frame
+        layout = QtWidgets.QVBoxLayout(frame)
+        frame.setLayout(layout)
+
+        # Create a label to display the text
         label = QtWidgets.QLabel(frame)
         label.setText(full_note_text)
         label.setWordWrap(True)
         label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
-        label.setGeometry(0, 0, 1000, 1000)
-        label.show()
+        layout.addWidget(label)
+
+        # Set the frame as the widget for the scroll area
+        scroll_area.setWidget(frame)
+
+        # Set the scroll area as the central widget of the window
+        window7.setCentralWidget(scroll_area)
+
+        window7.show()
 
 
 
